@@ -1,6 +1,6 @@
 const questions = [
     {
-        question: "What are your primary fitness goals? (Choose up to 2)",
+        question: "01 What are your primary fitness goals? (Choose up to 2)",
         options: ["Build strength and muscle", "Improve endurance and stamina", "Lose weight and tone up", "Increase flexibility and mobility"],
         type: "checkbox"
     },
@@ -143,7 +143,19 @@ function displayRecommendation() {
             recommendation += "Calisthenics or Yoga (outdoors or at home)!";
         }
     }
-    
+      // Additional Logic for Advanced Athletes
+    if (userAnswers[2] === "Advanced (experienced athlete)") {
+        if (userAnswers[3] === "Technical lifts like the snatch and clean & jerk") {
+            recommendation += " Consider joining a competitive weightlifting club or program.";
+        } else if (userAnswers[3] === "Obstacle courses and outdoor challenges") {
+            recommendation += " Look into more challenging obstacle races or competitive events.";
+        }
+    }
+
+    // Handling Multiple Goals
+    if (userAnswers[0].length > 1) { // If multiple goals are selected
+        recommendation += " Since you have multiple goals, you might consider combining different workout styles or trying a hybrid approach.";
+    }
     // If no clear goals are selected or combination doesn't fit the decision tree:
     else {
         recommendation += "Explore our detailed guides to each discipline to find the perfect fit for you!";
