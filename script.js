@@ -68,23 +68,30 @@ function nextQuestion() {
     }
 }
 
+
 function displayRecommendation() {
     let recommendation = "Based on your answers, we recommend trying: ";
 
     // Strength & Muscle
     if (userAnswers[0].includes("Build strength and muscle")) {
         if (userAnswers[1] === "Gym with equipment") {
-            if (userAnswers[3] === "Constantly varied workouts with weights and bodyweight exercises") {
-                recommendation += "CrossFit or Olympic Weightlifting!";
+            if (userAnswers[2] === "Beginner (just starting out)") {
+                recommendation += "Powerlifting or Kettlebell Training (to learn fundamental movements).";
+            } else if (userAnswers[3] === "Constantly varied workouts with weights and bodyweight exercises") {
+                recommendation += "CrossFit!";
             } else if (userAnswers[3] === "Lifting heavy weights to build pure strength") {
                 recommendation += "Powerlifting!";
+            } else if (userAnswers[3] === "Functional movements with kettlebells") {
+                recommendation += "Kettlebell Training!";
+            } else if (userAnswers[3] === "Technical lifts like the snatch and clean & jerk") {
+                recommendation += "Olympic Weightlifting!";
             } else {
                 recommendation += "CrossFit, Olympic Weightlifting, or Powerlifting (depending on your preference for variety and specific movements)!";
             }
         } else if (userAnswers[1] === "Home with minimal equipment") {
-            recommendation += "Calisthenics!";
+            recommendation += "Calisthenics or Suspension Training (depending on your preference for equipment)!";
         } else { // Outdoors
-            recommendation += "Hyrox or Calisthenics!"; // Hyrox if they prefer a challenge and variety, Calisthenics if they want bodyweight focus
+            recommendation += "Hyrox or Calisthenics!";
         }
     } 
 
@@ -98,25 +105,45 @@ function displayRecommendation() {
             } else {
                 recommendation += "Spartan Race or Hyrox (depending on your preference for obstacles vs. functional fitness exercises)!";
             }
-        } else {
-            recommendation += "HIIT, CrossFit, or Olympic Weightlifting (if you're okay with a gym environment)!"; 
+        } else if (userAnswers[1] === "Gym with equipment") {
+            if (userAnswers[2] === "Beginner (just starting out)") {
+                recommendation += "HIIT or Rowing!"; // Rowing is a great low-impact option for beginners
+            } else {
+                recommendation += "HIIT, CrossFit, or Olympic Weightlifting!";
+            }
+        } else { // Home with minimal equipment
+            if (userAnswers[3] === "Short, intense bursts of exercise with rest periods") {
+                recommendation += "HIIT!";
+            } else {
+                recommendation += "Calisthenics or HIIT!";
+            }
         }
     }
 
     // Weight Loss & Tone Up
     else if (userAnswers[0].includes("Lose weight and tone up")) {
-        recommendation += "HIIT or any of the other options, depending on your preferences and fitness level!"; // Most functional fitness styles can aid in weight loss
+        if (userAnswers[1] === "Outdoors") {
+            recommendation += "Hyrox or Spartan Race!";
+        } else if (userAnswers[2] === "Beginner (just starting out)") {
+            recommendation += "HIIT (start slow and gradually increase intensity)!";
+        } else if (userAnswers[3] === "Short, intense bursts of exercise with rest periods") {
+            recommendation += "HIIT!";
+        } else {
+            recommendation += "HIIT, CrossFit, or any other option that you enjoy!";
+        }
     }
 
     // Flexibility & Mobility
     else if (userAnswers[0].includes("Increase flexibility and mobility")) {
         if (userAnswers[1] === "Home with minimal equipment") {
-            recommendation += "Calisthenics or Suspension Training!";
+            recommendation += "Calisthenics or Yoga!";
+        } else if (userAnswers[1] === "Gym with equipment") {
+            recommendation += "Yoga or Pilates!";
         } else {
-            recommendation += "Calisthenics, Yoga, or Pilates (if available at your gym)!";
+            recommendation += "Calisthenics or Yoga (outdoors or at home)!";
         }
     }
-
+    
     // If no clear goals are selected or combination doesn't fit the decision tree:
     else {
         recommendation += "Explore our detailed guides to each discipline to find the perfect fit for you!";
@@ -125,6 +152,7 @@ function displayRecommendation() {
     document.getElementById("quiz-container").innerHTML = `<h2>${recommendation}</h2>`;
     document.getElementById("next-btn").style.display = "none";
 }
+
 
 
 displayQuestion();
