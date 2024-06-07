@@ -1,0 +1,55 @@
+/* General Styling */
+body {
+    font-family: sans-serif; /* Choose a modern sans-serif font like Open Sans, Lato, or Roboto */
+    background-color: #f4f4f4; /* Light background color */
+    color: #333;             /* Dark text color */
+    display: flex;          /* Center content horizontally and vertically */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#quiz-container {
+    background-color: #fff; /* White background for the quiz container */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 600px; /* Adjust as needed */
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;     /* Put labels on separate lines */
+    margin-bottom: 10px;
+}
+
+/* Input Styles */
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Button Styles */
+#next-btn {
+    background-color: #007bff; /* Blue background for the button */
+    color: #fff; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+#next-btn:hover {
+    background-color: #0056b3; /* Slightly darker blue on hover */
+}
+
+/* Recommendation Style */
+#quiz-container h2 { /* Targets the h2 inside the quiz container after results */
+    font-size: 24px;
+    margin-bottom: 10px;
+}
