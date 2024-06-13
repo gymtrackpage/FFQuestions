@@ -1,6 +1,6 @@
 const questions = [
     {
-        question: "01 What are your primary fitness goals? (Choose up to 2)",
+        question: "001 What are your primary fitness goals? (Choose up to 2)",
         options: ["Build strength and muscle", "Improve endurance and stamina", "Lose weight and tone up", "Increase flexibility and mobility"],
         type: "checkbox"
     },
@@ -107,7 +107,7 @@ function displayRecommendation() {
             }
         } else if (userAnswers[1] === "Gym with equipment") {
             if (userAnswers[2] === "Beginner (just starting out)") {
-                recommendation += "HIIT or Rowing!"; // Rowing is a great low-impact option for beginners
+                recommendation += "HIIT or Rowing!";
             } else {
                 recommendation += "HIIT, CrossFit, or Olympic Weightlifting!";
             }
@@ -115,7 +115,7 @@ function displayRecommendation() {
             if (userAnswers[3] === "Short, intense bursts of exercise with rest periods") {
                 recommendation += "HIIT!";
             } else {
-                recommendation += "Calisthenics or HIIT!";
+                recommendation += "Calisthenics or HIIT!"; 
             }
         }
     }
@@ -143,28 +143,15 @@ function displayRecommendation() {
             recommendation += "Calisthenics or Yoga (outdoors or at home)!";
         }
     }
-      // Additional Logic for Advanced Athletes
-    if (userAnswers[2] === "Advanced (experienced athlete)") {
-        if (userAnswers[3] === "Technical lifts like the snatch and clean & jerk") {
-            recommendation += " Consider joining a competitive weightlifting club or program.";
-        } else if (userAnswers[3] === "Obstacle courses and outdoor challenges") {
-            recommendation += " Look into more challenging obstacle races or competitive events.";
-        }
-    }
-
-    // Handling Multiple Goals
-    if (userAnswers[0].length > 1) { // If multiple goals are selected
-        recommendation += " Since you have multiple goals, you might consider combining different workout styles or trying a hybrid approach.";
-    }
-    // If no clear goals are selected or combination doesn't fit the decision tree:
+    
+    // No specific goal or combination doesn't fit the tree:
     else {
         recommendation += "Explore our detailed guides to each discipline to find the perfect fit for you!";
     }
 
-    document.getElementById("quiz-container").innerHTML = `<h2>${recommendation}</h2>`;
+    document.getElementById("quiz-container").innerHTML = <h2>${recommendation}</h2>;
     document.getElementById("next-btn").style.display = "none";
 }
-
 
 
 displayQuestion();
