@@ -50,10 +50,23 @@ function displayQuestion() {
 
 function nextQuestion() {
     const currentAnswers = [];
-    const selectedOptions = document.querySelectorAll(`input[name="q${currentQuestion}"]:checked`);
-    selectedOptions.forEach(option => currentAnswers.push(option.value));
+    if (questions[currentQuestion].type === "checkbox") {
+        const selectedCheckboxes = document.querySelectorAll(
+            input[name="q${currentQuestion}"]:checked
+        );
+        selectedCheckboxes.forEach(option => {
+            currentAnswers.push(option.value);
+        });
+    } else { // radio buttons
+        const selectedRadio = document.querySelector(
+            input[name="q${currentQuestion}"]:checked
+        );
+        if (selectedRadio) { // Check if a radio button is selected
+            currentAnswers.push(selectedRadio.value);
+        }
+    }
 
-    if (currentAnswers.length === 0 && questions[currentQuestion].type !== "checkbox") {
+    if (currentAnswers.length === 0) {
         alert("Please select an answer.");
         return;
     }
@@ -67,8 +80,6 @@ function nextQuestion() {
         displayRecommendation();
     }
 }
-
-
 function displayRecommendation() {
     let recommendation = "Based on your answers, we recommend trying: ";
 
@@ -153,5 +164,5 @@ function displayRecommendation() {
     document.getElementById("next-btn").style.display = "none";
 }
 
-
+//initialise the quiz with the first question
 displayQuestion();
